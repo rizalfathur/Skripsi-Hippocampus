@@ -1,0 +1,194 @@
+.title{
+    overflow: hidden;
+    background-color: #0B4875;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.title-resp{
+    display: none;
+    overflow: hidden;
+    background-color: #0B4875;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.title-resp a{
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 3px;
+}
+
+.title a{
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 3px;
+}
+
+.profile, .menu{
+    float: right;
+}
+
+.profile a{
+    margin: 3px;
+}
+
+.profile a:hover{
+    background-color: aliceblue;
+    color: #0B4875;
+}
+
+h3{
+    font-weight: 700;
+    margin-left: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h4{
+    font-size: large;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 3px;
+    height: 240px;
+}
+
+.container > div{
+    text-align: center;
+    padding: 10px;
+    background-color: aqua;
+}
+
+#event > div{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.w3-panel{
+    width: 25%;
+    height: 300px;
+    position: relative;
+    float: left;
+    margin-top: 30px;
+    text-align: center;
+}
+
+h4{
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 40px;
+
+}
+
+.w3-panel:hover{
+    background-color: #0B4875;
+    height: 300px;
+    transition: all .5s;
+    color: white;
+    cursor: pointer;
+}
+
+.w3-panel2{
+    margin-top: 30px;
+    text-align: center;
+    height: 300px;
+}
+
+.w3-panel2:hover{
+    background-color: #0B4875;
+    transition: all .5s;
+    color: white;
+    cursor: pointer;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;  
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.menu a:hover, .dropdown:hover .dropbtn {
+    background-color: darkslategrey;
+    padding: 15px;
+    transition: all .4s;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.show{
+    display: block;
+}
+
+.dropdown i {
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 680px){
+    .w3-panel{
+        width: 100%;
+        height: 300px;
+        position: relative;
+        float: left;
+    }
+
+    h3{
+        text-align: center;
+    }
+    .w3-panel #none{
+        display: none;
+    }
+
+    .title{
+        display: none;
+    }
+
+    .title-resp{
+        display: block;
+    }
+    /* ================================== */
+
+}
