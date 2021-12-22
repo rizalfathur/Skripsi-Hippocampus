@@ -177,3 +177,9 @@ textarea::placeholder{
     opacity: 70%;
 }
 
+.error{
+    position: relative;
+    color: red;
+    opacity: 80%;
+    margin: 30px 0;
+}

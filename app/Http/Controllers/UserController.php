@@ -5,20 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
     public function baksoal(){
-        $col_1 = ["UKMPPD 2013"," 2013", "150", "Kemendikbud"];
-        $col_2 = ["UKMPPD 2014", "2014", "150", "Kemendikbud"];
-        $col_3 = ["UKMPPD 2015", "2015", "150", "Kemendikbud"];
-        $col_4 = ["UKMPPD 2016", "2016", "150", "Kemendikbud"];
-        $col_5 = ["UKMPPD 2017", "2017", "150", "Kemendikbud"];
-        $col_6 = ["UKMPPD 2018", "2018", "150", "Kemendikbud"];
-        $col_7 = ["UKMPPD 2019", "2019", "150", "Kemendikbud"];
-        $col_8 = ["UKMPPD 2020", "2020", "150", "Kemendikbud"];
-        $pengguna = DB::table('pengguna')->where('id_pengguna', 3)->get();
-        return view('user_bs', ['col_1' => $col_1, 'col_2' => $col_2, 'col_3' => $col_3, 'col_4' => $col_4, 'col_5' => $col_5, 'col_6' => $col_6, 'col_7' => $col_7, 'col_8' => $col_8, 'pengguna'=>$pengguna]);
+        $bakso = DB::table('bank_soal')->get();
+        return view('user_bs', ['bakso' => $bakso]);
     }
 
     public function materi(){
@@ -57,8 +51,8 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
-        DB::table('pengguna')->insert([
-            'nama' => $request->nama,
+        DB::table('users')->insert([
+            'name' => $request->nama,
             'email' => $request->email,
             'no_hp' => $request->hp,
             'universitas' => $request->univ,
@@ -69,19 +63,19 @@ class UserController extends Controller
     }
 
     public function pengguna(){
-        $pengguna = DB::table('pengguna')->get();
-        return view('manajemen_user', ['pengguna' => $pengguna]);
+        $users = DB::table('users')->get();
+        return view('manajemen_user', ['users' => $users]);
     }
 
     public function edit($id){
-        $pengguna = DB::table('pengguna')->where('id_pengguna',$id)->get();
-        return view('edit_manajemen',['pengguna' => $pengguna]);
+        $users = DB::table('users')->where('id',$id)->get();
+        return view('edit_manajemen',['users' => $users]);
     }
 
     public function update(Request $request){
         
-        DB::table('pengguna')->where('id_pengguna',$request->id)->update([
-            'nama' => $request->nama,
+        DB::table('users')->where('id',$request->id)->update([
+            'name' => $request->nama,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
             'universitas' => $request->universitas,
@@ -91,23 +85,71 @@ class UserController extends Controller
     }
 
     public function delete($id){
-        DB::table('pengguna')->where('id_pengguna', $id)->delete();
+        DB::table('users')->where('id', $id)->delete();
         return redirect('manajemen_user');
     }
     
     public function editUser($id){
-        $pengguna = DB::table('pengguna')->where('id_pengguna', $id)->get();
-        return view('useredit', ['pengguna' => $pengguna]);
+        $users = DB::table('users')->where('id', $id)->get();
+        return view('useredit', ['users' => $users]);
     }
 
     public function storeProfil(Request $request){
-        DB::table('pengguna')->where('id_pengguna', $request->id)->update([
-            'nama' => $request->nama,
+        DB::table('users')->where('id', $request->id)->update([
+            'name' => $request->name,
             'email' => $request->email,
-            'universitas' => $request->univ
+            'universitas' => $request->universitas
         ]);
-
+        $pengguna = DB::table('users')->where('email', $request->input('email'))->get();
+        $data = array(
+            'id' => $pengguna[0]->id,
+            'email' => $pengguna[0]->email,
+            'name' => $pengguna[0]->name,
+            'no_hp' => $pengguna[0]->no_hp,
+            'universitas' => $pengguna[0]->universitas
+        );
+        $request->session()->put($data);
         return redirect('user_profile');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email:dns'],
+            'password' => ['required']
+        ]);
+        if(Auth::attempt($credentials)){
+            $request->session()->regenerate();
+            $pengguna = DB::table('users')->where('email', $request->input('email'))->get();
+            $data = array(
+                'id' => $pengguna[0]->id,
+                'email' => $pengguna[0]->email,
+                'name' => $pengguna[0]->name,
+                'no_hp' => $pengguna[0]->no_hp,
+                'universitas' => $pengguna[0]->universitas
+            );
+            // dd($data);
+            $request->session()->put($data);
+            // dd($request->session('email'));
+            return redirect('home/user')->with('pengguna', $data);
+        }
+        return back()->withInput()->withErrors([
+            'email' => 'email atau password salah',
+            'password' => 'email atau password salah'
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('login');
+    }
+
+    public function profEdit(Request $request)
+    {
+        
     }
 
 }

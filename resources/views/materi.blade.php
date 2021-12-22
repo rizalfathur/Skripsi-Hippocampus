@@ -1,7 +1,10 @@
+<!-- menghubungkan dengan view template master-->
 @extends('master')
 
+<!-- isi bagian title-->
 @section('title', 'Materi')
 
+<!-- isi bagian konten -->
 @section('konten')
 
 <h4>Materi Ujian Kompetensi Mahasiswa Pendidikan Profesi Dokter</h4>
@@ -11,6 +14,8 @@
     <th>Action <a href="/materi/tambah" style="text-decoration: none; background:#00cc00; color: white; margin-left: 15px;border-radius: 10px; padding: 10px;">TAMBAH DATA</a>
 </th>
 </tr>
+
+<!-- menampilkan data yang telah diambil dari database dan disimpan ke dalam variabel materi -->
 @foreach($materi as $mat)
 <tr>
     <td>{{ $mat->materi_penyakit }}</td>

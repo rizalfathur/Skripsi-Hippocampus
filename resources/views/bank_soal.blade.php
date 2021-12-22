@@ -1,11 +1,14 @@
+<!--menghubungkan view dengan template master -->
 @extends('master')
 
+<!-- isi bagian title -->
 @section('title', 'Bank Soal')
 
+<!-- isi bagian konten -->
 @section('konten')
 
 <h5 style="text-align: center; font-weight: bold;">BANK SOAL</h5>
-
+<!-- tabel untuk menampilkan kumpulan soal -->
 <table class="b-soal">
     <tr>
         <th>Soal</th>
@@ -13,18 +16,15 @@
         <th>Jumlah Soal</th>
         <th>Pembuat</th>
     </tr>
+    @foreach($bakso as $bs)
     <tr>
-        <td> <a href="">{{ $col_1[0] }} </a></td>
-        <td> {{ $col_1[1 ]}}</td>
-        <td> {{ $col_1[2] }}</td>
-        <td> {{ $col_1[3] }}</td>
+        <td> <a href="{{ $bs->link_soal }}">{{ $bs->nama_soal }} </a></td>
+        <td> {{ $bs->tahun_soal}}</td>
+        <td> {{ $bs->jumlah_soal }}</td>
+        <td> {{ $bs->pembuat }}</td>
     </tr>
-    <tr>
-        <td> <a href=""> {{ $col_2[0] }}</a></td>
-        <td>{{ $col_2[1] }}</td>
-        <td>{{ $col_2[2] }}</td>
-        <td>{{ $col_2[3] }}</td>
-    </tr>
+    @endforeach
+
 </table>
 
 @endsection

@@ -213,7 +213,57 @@ iframe{
     width: 300px;
 }
 
+.input_add input[type=text]{
+    width: 100%;
+    height: 40px;
+    /* padding: 30px; */
+    margin: 10px;
 
+}
+
+.form_tambah{
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background-color: #05274d;
+}
+
+input[type="submit"]{
+    width: 80%;
+    height: 50px;
+    border: none;
+    background: #2691d9;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 500px;
+    cursor: pointer;
+    outline: none;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover{
+    border-color: #2691d9;
+    transition: .5s;
+    background-color: #05f535;
+}
+
+.form_tambah h4{
+    color: white;
+    padding: 0;
+}
+
+h2{
+    text-align: center;
+    padding-top: 15px;
+    font-weight: bold;
+    opacity: 80%;
+    font-family: 'roboto';
+}
 @media screen and (max-width: 680px){
     .w3-panel{
         width: 100%;

@@ -1,7 +1,10 @@
+<!-- menghubungkan dengan view template master -->
 @extends('master')
 
+<!-- isi bagian title -->
 @section('title','Home')
 
+<!-- isi bagian konten -->
 @section('konten')
 
 <h3>Utama</h3>

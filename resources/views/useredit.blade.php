@@ -12,12 +12,12 @@
 
 <form action="/update/user" method="post">
     @csrf
-    @foreach($pengguna as $p)
-           <input type="text" style="display:none;"name="id" value="{{ $p->id_pengguna}}">
-           <input type="text" name="penyakit" value="{{ $p->nama }}" style="width:300px"><br>
-           <input type="text" name="gejala" value="{{ $p->email }}" style="width:400px"><br>
-           <input type="text" name="terapi" value="{{ $p->universitas }}">
-           <input type="text" style="display:none;"name="psw" value="{{ $p->password}}">
+    @foreach($users as $u)
+           <input type="text" style="display:none;"name="id" value="{{ $u->id}}">
+           <input type="text" name="penyakit" value="{{ $u->name }}" style="width:300px"><br>
+           <input type="text" name="gejala" value="{{ $u->email }}" style="width:400px"><br>
+           <input type="text" name="terapi" value="{{ $u->universitas }}">
+           <input type="text" style="display:none;"name="psw" value="{{ $u->password}}">
         <input onclick="return confirm('Apakah kamu yakin?')" type="submit" value="Simpan">
     </form>
     @endforeach

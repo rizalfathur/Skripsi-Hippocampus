@@ -12,17 +12,22 @@
 <div class="center">
     <img src="{{asset('/image/hippocampus.png')}}" alt="">
    <!-- <h1>Login</h1>-->
-    <form action="{{ url('home/user') }}" method="GET">
+    <form action="{{ url('/login') }}" method="post">
         <div class="txt_field">
             @csrf
-            <input type="text" name="uname" required>
+            <input type="email" name="email" required>
             <span></span>
-            <label for="uname">Username</label>
+            <label for="email">Username</label>
         </div>
         <div class="txt_field">    
-            <input type="password" name="psw" required>
+            <input type="password" name="password" required>
             <span></span>
-            <label for="psw">Password</label>
+            <label for="password">Password</label>
+        </div>
+        <div class="error">
+            @error('email')
+                {{$message}}
+            @enderror
         </div>
         <div class="pass">Forgot Password?</div>
         <input type="submit" value="Login">

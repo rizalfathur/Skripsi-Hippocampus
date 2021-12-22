@@ -23,7 +23,7 @@ Route::get('home', function () {
 
 Route::get('login', function () {
     return view('login');
-});
+})->name('login')->middleware('guest');
 
 Route::get('register', function () {
     return view('register');
@@ -47,18 +47,23 @@ Route::post('/update', 'MateriController@update');
 Route::get('/materi/tambah', 'MateriController@tambah');
 Route::post('/materi/tambah/proses', 'MateriController@proses');
 
-Route::get('home/user', function () {
-    $pengguna = DB::table('pengguna')->where('id_pengguna', 3)->get();
-    return view('homeuser',['pengguna'=>$pengguna]);
-});
 
-Route::get('user_bs', 'UserController@baksoal');
-Route::get('user_materi', 'UserController@materi');
-Route::get('user_pembahasan', 'UserController@pembahasan');
-Route::get('user_hasilto', 'UserController@hasilto');
-Route::get('user_profile', 'UserController@profile');
-Route::get('user_to', 'UserController@to');
-Route::get('to_page', 'UserController@topage');
+Route::get('home/user', function() {
+    return view('homeuser');
+})->middleware('auth');
+Route::post('/login', 'UserController@login');
+Route::middleware(['auth'])->group(function (){ 
+    Route::get('/logout', 'UserController@logout');
+    Route::get('user_bs', 'UserController@baksoal');
+    Route::get('user_materi', 'UserController@materi');
+    Route::get('user_pembahasan', 'UserController@pembahasan');
+    Route::get('user_hasilto', 'UserController@hasilto');
+    Route::get('user_profile', 'UserController@profile');
+    Route::get('user_to', 'UserController@to');
+    Route::get('to_page', 'UserController@topage');
+});
+Route::post('/prof_edit', 'UserController@storeProfil');
+
 Route::get('manajemen_user', 'UserController@pengguna');
 
 Route::get('manajemen_user/edit/{id}', 'UserController@edit');
@@ -66,3 +71,7 @@ Route::get('manajemen_user/hapus/{id}', 'UserController@delete');
 Route::post('/ubah', 'UserController@update');
 Route::get('user/edit/{id}', 'UserController@editUser');
 Route::get('/update/user', 'UserController@storeProfil');
+
+Route::get('add_pemb', 'PembahasanController@addPembV');
+Route::post('addProc', 'PembahasanController@addPemb');
+Route::get('pembahasan/hapus/{id}', 'PembahasanController@hapusPemb');

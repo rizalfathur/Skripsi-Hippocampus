@@ -30,7 +30,7 @@
         <div class="user-details">
             <div class="input-box">
                 <span class="details">Phone number</span>
-                <input type="text" placeholder="Enter your phone number" required name="hp">
+                <input type="text" placeholder="Enter your phone number" required name="hp" maxlength="12">
             </div>
         </div>
         <div class="user-details">
@@ -42,7 +42,7 @@
         <div class="user-details">
             <div class="input-box">
                 <span class="details">Password</span>
-                <input type="password" placeholder="Enter your Password" required name="pw">
+                <input type="password" placeholder="Enter your Password" required name="pw" minlength="6">
             </div>
         </div>
         <div class="button">

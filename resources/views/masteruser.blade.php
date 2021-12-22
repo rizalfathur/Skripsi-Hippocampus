@@ -52,13 +52,11 @@ function closeNav() {
   <img src="{{ url('image/logo.jpg') }}" alt="">
   <li >HIPPOCAMPUS</li>
 </div>
-@foreach($pengguna as $p)
 <div class="profile">
 <img src="{{ url('image/profile.jpg') }}" alt="">
-<h7>{{ $p->nama }}</h7>
-<p>{{ $p->email}} </p>
+<h7>{{ session('name') }}</h7>
+<p>{{ session('email') }} </p>
 </div>
-@endforeach
 <li class="cat">UTAMA</li>
 <li><a href="{{ url('home/user') }}"><i class="fas fa-home "></i>Beranda</a></li>
 <li><a href="{{ url('user_materi') }}"><i class="fas fa-book "></i>Materi</a></li>
@@ -68,7 +66,7 @@ function closeNav() {
   <li><a href="{{ url('user_hasilto') }}"><i class="fas fa-file-alt"></i>Hasil Try Out</a></li>
 <li class="cat">LAINNYA</li>
   <li><a href="{{ url('user_profile') }}"><i class="fas fa-cog"></i>Pengaturan Akun</a></li>
-  <li><a href="{{ url('login') }}"><i class="fas fa-power-off"></i>Keluar</a></li>
+  <li><a href="{{ url('logout') }}"><i class="fas fa-power-off"></i>Keluar</a></li>
   <footer>&copy; &nbsp; Hippocampus Medical Course | 2021 </footer>
 </ul>
 <div class="header">

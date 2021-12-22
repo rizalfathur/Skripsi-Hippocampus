@@ -1,15 +1,21 @@
+<!-- menghubungkan dengan view template masteruser -->
 @extends('masteruser')
 
+<!-- isi bagian title -->
 @section('title', 'Beranda')
+<!-- isi bagian judul_halaman -->
 @section('judul_halaman', 'Beranda')
+
+<!-- isi bagian kontent -->
 @section('konten')
 
+<!-- menu-menu yang ditampilkan pada halaman homeuser -->
 <div class="page-content">
 <div class="container">
     <div class="item">
         <h2>EVENT BARU TELAH HADIR!</h2>
         <h4>Try Out V.2.0 sudah ada lho!</h4>
-        <p>Try Out V.2.0 kali ini lebih menantang lho! br Terdiri dari 150 soal dan harus selesai dalam 100 menit! Yuk persiapkan diri kalian!</p><br>
+        <p>Try Out V.2.0 kali ini lebih menantang lho! Terdiri dari 150 soal dan harus selesai dalam 100 menit! Yuk persiapkan diri kalian!</p><br>
         <a href="{{ url('to_page') }}" id="to">Lihat Try Out</a>
     </div>
 </div>

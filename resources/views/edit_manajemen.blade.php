@@ -9,12 +9,12 @@
 <body>
     <form action="ubah" method="post">
     @csrf
-    @foreach($pengguna as $p)
-           <input type="text" style="display:none;"name="id" value="{{ $p->id_pengguna}}">
-           <input type="text" name="nama" value="{{ $p->nama }}" style="width:300px"><br>
-           <input type="text" name="email" value="{{ $p->email }}" style="width:400px"><br>
-           <input type="text" name="no_hp" value="{{ $p->no_hp }}">
-           <input type="text"  name="universitas" value="{{ $p->universitas}}">
+    @foreach($users as $u)
+           <input type="text" style="display:none;"name="id" value="{{ $u->id}}">
+           <input type="text" name="nama" value="{{ $u->name }}" style="width:300px"><br>
+           <input type="text" name="email" value="{{ $u->email }}" style="width:400px"><br>
+           <input type="text" name="no_hp" value="{{ $u->no_hp }}">
+           <input type="text"  name="universitas" value="{{ $u->universitas}}">
         <input onclick="return confirm('Apakah kamu yakin?')" type="submit" value="Simpan">
     @endforeach
     </form>

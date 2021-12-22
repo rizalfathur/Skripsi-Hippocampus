@@ -13,33 +13,42 @@
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <style>
     </style>
-    <script>
-        var count = 7200;
-        var interval = setInterval(function(){
-        document.getElementById('count').innerHTML=count;
-        count--;
-        if (count === 0){
-            clearInterval(interval);
-        document.getElementById('count').innerHTML='Done';
-        // or...
-        alert("You're out of time!");
-        window.location.href="home/user";
-        }
-        }, 1000);
-    </script>
+  
 </head>
 <body>
+<script>
+//fungsi untuk menampilkan waktu yang tersisa
+        var upgradeTime = 500;
+        var seconds = upgradeTime;
+        function timer(){
+            var hours = Math.floor(seconds/60/60);
+            var minutesLeft = Math.floor((seconds) - (hours*3600));
+            var minutes = Math.floor(minutesLeft/60);
+            var remainingSeconds = seconds % 60;
+            function pad(n){
+                return (n < 10 ? "0" + n : n);
+            }
+            document.getElementById('count').innerHTML = pad(hours) + " jam " + pad(minutes) + " menit " + pad(remainingSeconds) + " detik";
+            if (seconds == 0){
+                clearInterval(countdownTimer);
+                document.getElementById('count').innerHTML = "Completed";
+                alert("Time's Up");
+                window.location.href="home/user";
+            }else{
+                seconds--;
+            }
+        }
+        var countdownTimer = setInterval('timer()', 1000);
+
+    </script>
 <ul>
 <div class="logo">
   <img src="{{ url('image/logo.jpg') }}" alt="">
   <li >HIPPOCAMPUS</li>
 </div>
-<!-- <div class="profile">
-<img src="{{ url('image/profile.jpg') }}" alt="">
-<h7>Salsabila P</h7>
-<p>salsabila@gmail.com</p>
-</div>-->
+<!--navigasi soal -->
 <li class="cat">Soal</li>
+<!--menampilkan nomor soal dari 1 sampai dengan 150 -->
 <div class="nav-soal">
     <div class="items-prob">1</div>
     @foreach(range(2, 149, 1) as $number)
@@ -56,6 +65,7 @@ Try Out V.2.0
 </div>
 </div>
 
+<!-- halaman soal -->
 <div class="page-content">
 
     <div class="soal-to">
@@ -88,19 +98,23 @@ Try Out V.2.0
         </div>
     </div>
     <div class="tombol">
+        <!--menampilkan waktu tersisa -->
         <div class="prob">
             <button>Ragu-ragu</button>
-          &nbsp; Waktu tersisa : <h7 id="count">  </h7> &nbsp; detik
+          &nbsp; Waktu tersisa : <h7 id="count" class="timer"></h7> 
         </div>
+        <!-- tombol untuk kembali ke soal sebelumnya -->
         <div class="back">
             <a href="">Back</a>
         </div>
         <div class="number-soal">
             150
         </div>
+        <!-- tombol untuk melanjutkan ke soal setelahnya -->
         <div class="next">
             <a href="">Next</a>
         </div>
+        <!-- tombol untuk menyelesaikan try out -->
         <div class="finish">
             <a href="{{ url('home/user')}}" onclick="if (confirm('Apakah kamu yakin?')){return true;}else{event.stopPropagation(); event.preventDefault();};" title="Link Title">
                 Finish
